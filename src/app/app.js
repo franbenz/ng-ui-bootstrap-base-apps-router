@@ -2,6 +2,8 @@ import angular from 'angular';
 
 import '../style/app.css';
 
+import 'bootstrap/dist/css/bootstrap.css';
+
 let app = () => {
   return {
     template: require('./app.html'),
