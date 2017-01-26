@@ -1,6 +1,10 @@
-# angular-webpack
+# angular-webpack + angular-ui/bootstrap + base-apps-router
 
-[![Dependency Status](https://david-dm.org/preboot/angular-webpack/status.svg)](https://david-dm.org/preboot/angular-webpack#info=dependencies) [![devDependency Status](https://david-dm.org/preboot/angular-webpack/dev-status.svg)](https://david-dm.org/preboot/angular-webpack#info=devDependencies)
+
+This repo was forked from [preboot/angular-webpack](https://github.com/preboot/angular-webpack.git)
+It includes angular-ui/bootstrap and base-apps-router(for easier routing).
+
+[![Dependency Status](https://david-dm.org/franbenz/ng-ui-bootstrap-base-apps-router/status.svg)](https://david-dm.org/franbenz/ng-ui-bootstrap-base-apps-router#info=dependencies) [![devDependency Status](https://david-dm.org/franbenz/ng-ui-bootstrap-base-apps-router/dev-status.svg)](https://david-dm.org/franbenz/ng-ui-bootstrap-base-apps-router#info=devDependencies)
 
 A complete, yet simple, starter for Angular using Webpack.
 
