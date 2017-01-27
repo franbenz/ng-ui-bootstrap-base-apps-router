@@ -15,7 +15,7 @@ var ENV = process.env.npm_lifecycle_event;
 var isTest = ENV === 'test' || ENV === 'test-watch';
 var isProd = ENV === 'build';
 
-module.exports = function makeWebpackConfig () {
+module.exports = function makeWebpackConfig() {
   /**
    * Config
    * Reference: http://webpack.github.io/docs/configuration.html
@@ -134,7 +134,7 @@ module.exports = function makeWebpackConfig () {
       query: {
         esModules: true
       }
-    })
+    });
   }
 
   /**
@@ -169,9 +169,16 @@ module.exports = function makeWebpackConfig () {
       // Extract css files
       // Disabled when in test mode or not in build mode
       new ExtractTextPlugin('[name].[hash].css', {disable: !isProd})
-    )
+    );
   }
 
+  config.plugins.push(
+    new CopyWebpackPlugin([{
+      from: __dirname + '/build/templates/',
+      ignore: ['public/**/*']
+    }]
+    )
+  );
   // Add build specific plugins
   if (isProd) {
     config.plugins.push(
@@ -192,7 +199,7 @@ module.exports = function makeWebpackConfig () {
       new CopyWebpackPlugin([{
         from: __dirname + '/src/public'
       }])
-    )
+    );
   }
 
   /**
@@ -202,6 +209,7 @@ module.exports = function makeWebpackConfig () {
    */
   config.devServer = {
     contentBase: './src/public',
+    outputPath: './src/public',
     stats: 'minimal'
   };
 

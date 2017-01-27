@@ -1,8 +1,10 @@
 import angular from 'angular';
+import 'angular-animate';
+import 'angular-ui-router';
+import 'angular-dynamic-routing/dynamicRouting';
+import routeconfig from './config-routes.js';
 
 import '../style/app.css';
-
-import 'angular-animate';
 
 import 'bootstrap/dist/css/bootstrap.css';
 
@@ -11,12 +13,12 @@ import collapse from 'angular-ui-bootstrap/src/collapse';
 
 import demo from './ui.bootstrap.demo.js';
 
-let app = () => {
+const app = () => {
   return {
     template: require('./app.html'),
     controller: 'AppCtrl',
     controllerAs: 'app'
-  }
+  };
 };
 
 class AppCtrl {
@@ -27,10 +29,29 @@ class AppCtrl {
 
 const MODULE_NAME = 'app';
 
+const AppConfig = ($urlProvider, $locationProvider, $BaseAppsStateProvider, $httpProvider) => {
+  $urlProvider.otherwise('/');
 
-angular.module(MODULE_NAME, [accordion,demo,'ngAnimate',collapse])
+  $locationProvider.html5Mode({
+    enabled: false,
+    requireBase: false
+  });
+
+  $BaseAppsStateProvider.registerDynamicRoutes(routeconfig);
+};
+
+AppConfig.$inject = ['$urlRouterProvider', '$locationProvider', '$BaseAppsStateProvider', '$httpProvider'];
+
+angular.module(MODULE_NAME, [
+  'dynamicRouting',
+  'ui.router',
+  accordion,
+  demo,
+  'ngAnimate',
+  collapse
+])
   .directive('app', app)
-  .controller('AppCtrl', AppCtrl);
-
+  .controller('AppCtrl', AppCtrl)
+  .config(AppConfig);
 
 export default MODULE_NAME;
