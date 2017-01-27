@@ -7,6 +7,6 @@ router({
   library: 'node',
   overwrite: true,
   root: './src/'
-}).then(function() {
-  console.log("Base Apps Router complete!");
+}).then(() => {
+  console.log('Base Apps Router complete!');
 });

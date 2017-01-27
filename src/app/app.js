@@ -5,12 +5,12 @@ import routeconfig from './config-routes.js';
 
 import '../style/app.css';
 
-let app = () => {
+const app = () => {
   return {
     template: require('./app.html'),
     controller: 'AppCtrl',
     controllerAs: 'app'
-  }
+  };
 };
 
 class AppCtrl {
