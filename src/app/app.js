@@ -1,4 +1,7 @@
 import angular from 'angular';
+import 'angular-ui-router';
+import 'angular-dynamic-routing/dynamicRouting';
+import routeconfig from './config-routes.js';
 
 import '../style/app.css';
 
@@ -18,8 +21,25 @@ class AppCtrl {
 
 const MODULE_NAME = 'app';
 
-angular.module(MODULE_NAME, [])
+const AppConfig = ($urlProvider, $locationProvider, $BaseAppsStateProvider, $httpProvider) => {
+  $urlProvider.otherwise('/');
+
+  $locationProvider.html5Mode({
+    enabled: false,
+    requireBase: false
+  });
+
+  $BaseAppsStateProvider.registerDynamicRoutes(routeconfig);
+};
+
+AppConfig.$inject = ['$urlRouterProvider', '$locationProvider', '$BaseAppsStateProvider', '$httpProvider'];
+
+angular.module(MODULE_NAME, [
+  'dynamicRouting',
+  'ui.router'
+])
   .directive('app', app)
-  .controller('AppCtrl', AppCtrl);
+  .controller('AppCtrl', AppCtrl)
+  .config(AppConfig);
 
 export default MODULE_NAME;

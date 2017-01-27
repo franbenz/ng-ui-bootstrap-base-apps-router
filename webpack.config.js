@@ -172,6 +172,13 @@ module.exports = function makeWebpackConfig () {
     )
   }
 
+  config.plugins.push(
+    new CopyWebpackPlugin([{
+        from: __dirname + '/build/templates/',
+        ignore: ['public/**/*']
+      }]
+    )
+  );
   // Add build specific plugins
   if (isProd) {
     config.plugins.push(
@@ -202,6 +209,7 @@ module.exports = function makeWebpackConfig () {
    */
   config.devServer = {
     contentBase: './src/public',
+    outputPath: './src/public',
     stats: 'minimal'
   };
 
